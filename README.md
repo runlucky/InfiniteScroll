@@ -11,7 +11,7 @@ Here is the basic idea in few points:
 * What you do instead is to load few results (say 50) to begin with
 * You load additional results only when user gets to the bottom and needs to see more results.
 
-#### Tutotial:
+#### Tutorial:
 
 
 ### Development/Testing environment
