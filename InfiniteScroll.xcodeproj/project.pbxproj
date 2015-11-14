@@ -44,6 +44,7 @@
 		ACA2CEC61BC45ABE00DFE608 = {
 			isa = PBXGroup;
 			children = (
+				ACB6CA921BF7EB910054008E /* Demo.gif */,
 				ACA2CED11BC45ABF00DFE608 /* InfiniteScroll */,
 				ACA2CED01BC45ABE00DFE608 /* Products */,
 			);
@@ -68,7 +69,6 @@
 				ACA2CEDB1BC45ABF00DFE608 /* LaunchScreen.storyboard */,
 				ACA2CEDE1BC45ABF00DFE608 /* Info.plist */,
 				AC2D68B91BC4C1A700D384E6 /* AppConstants.swift */,
-				ACB6CA921BF7EB910054008E /* Demo.gif */,
 			);
 			path = InfiniteScroll;
 			sourceTree = "<group>";
