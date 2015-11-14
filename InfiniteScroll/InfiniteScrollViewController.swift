@@ -16,19 +16,18 @@ class InfiniteScrollViewController: UIViewController, UITableViewDelegate, UITab
     // array data that is displayed in the table
     var displayCities: [String]? {
         didSet {
-            // since table is just displaying data in californiaCities array,
+            // since table is just displaying data in displayCities array,
             // I like to set up a property observer to refresh data in table any time this array changes
             citiesTableView?.reloadData()
         }
     }
 
-    // has more results
+    // a boolean to determine whether API has more results or not
     var canFetchMoreResults = true
 
-    // fetch new results threshold
     struct Constants {
-        static let FetchThreshold = 5
-        static let FetchLimit = 50
+        static let FetchThreshold = 5 // a constant to determine when to fetch the results; anytime   difference between current displayed cell and your total results fall below this number you want to fetch the results and reload the table
+        static let FetchLimit = 50 // results to fetch in single call
     }
 
 
