@@ -14,6 +14,10 @@ Here is the basic idea in few points:
 #### Tutorial:
 
 
+#### Demo:
+
+![Demo](Demo.gif)
+
 ### Development/Testing environment
 
 * Operating System: OS X El Capitan v10.11
