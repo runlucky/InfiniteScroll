@@ -13,7 +13,7 @@ Here is the basic idea in few points:
 
 #### Tutorial:
 
- <i>In progress</i>
+ <i>I am currently in process of writing a detailed step by step tutorial. In the mean time, please refer to the inline comments in the code in [InfiniteScrollViewController.swift](https://github.com/aamays/InfiniteScroll/blob/master/InfiniteScroll/InfiniteScrollViewController.swift)</i>
 
 #### Demo:
 
