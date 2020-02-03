@@ -9,28 +9,12 @@
 import Foundation
 
 struct CaCities {
-
     static func getCities(from index: Int, andCount count: Int, withCompletion completion: @escaping ([String]) -> ())  {
-
-        // get the data from data source in background thread
-        // do not perform any expensive processing function on main queue as it will make the UI unresponsive
         DispatchQueue.global(qos: .background).async {
-            var rangeStartIndex = index
+            let start = index.limit(0...AllCities.endIndex)
+            let end = (index + count).limit(0...AllCities.endIndex)
 
-            // handle start index out of bounds
-            if rangeStartIndex < 0 {
-                rangeStartIndex = 0
-            } else if rangeStartIndex > CaCities.AllCities.endIndex {
-                rangeStartIndex = CaCities.AllCities.endIndex
-            }
-
-            // handle end index out of bounds
-            var rangeEndIndex = index + count
-            if rangeEndIndex > CaCities.AllCities.endIndex {
-                rangeEndIndex = CaCities.AllCities.endIndex
-            }
-
-            let nextCities = Array(CaCities.AllCities[rangeStartIndex..<rangeEndIndex])
+            let nextCities = Array(CaCities.AllCities[start..<end])
 
             DispatchQueue.main.async {
                 completion(nextCities)
@@ -39,7 +23,6 @@ struct CaCities {
     }
 
     private static let AllCities = (0...441).map {_ in source.randomElement()! }
-    
     private static let source = [
         "Anchorage, AK",
         "Atlanta, GA",
@@ -61,4 +44,10 @@ struct CaCities {
         "Shreveport, LA",
         "Springfield, MO"
     ]
+}
+
+extension Comparable {
+    func limit(_ range: ClosedRange<Self>) -> Self {
+        max(min(self, range.upperBound), range.lowerBound)
+    }
 }
