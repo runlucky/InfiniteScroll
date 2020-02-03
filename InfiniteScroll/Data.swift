@@ -10,11 +10,11 @@ import Foundation
 
 struct CaCities {
 
-    static func getCitiesFromIndex(index: Int, andCount count: Int, withCompletion completion: ([String]?) -> ())  {
+    static func getCitiesFromIndex(index: Int, andCount count: Int, withCompletion completion: @escaping ([String]?) -> ())  {
 
         // get the data from data source in background thread
         // do not perform any expensive processing function on main queue as it will make the UI unresponsive
-        dispatch_async(dispatch_get_global_queue(QOS_CLASS_BACKGROUND, 0)) { () -> Void in
+        DispatchQueue.global(qos: .background).async {
             var rangeStartIndex = index
 
             // handle start index out of bounds
@@ -32,8 +32,8 @@ struct CaCities {
 
             let nextCities = Array(CaCities.AllCities[rangeStartIndex..<rangeEndIndex])
 
-            dispatch_async(dispatch_get_main_queue()) { () -> Void in
-                completion(Array(nextCities))
+            DispatchQueue.main.async {
+                completion(nextCities)
             }
         }
     }
