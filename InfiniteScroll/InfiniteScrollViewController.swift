@@ -8,24 +8,24 @@
 
 import UIKit
 
-class InfiniteScrollViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class InfiniteScrollViewController: UIViewController {
 
     // table view outlet
-    @IBOutlet weak var citiesTableView: UITableView!
+    @IBOutlet private weak var citiesTableView: UITableView!
 
     // array data that is displayed in the table
-    var displayCities: [String]? {
+    private var displayCities: [String] = [] {
         didSet {
             // since table is just displaying data in displayCities array,
             // I like to set up a property observer to refresh data in table any time this array changes
-            citiesTableView?.reloadData()
+            citiesTableView.reloadData()
         }
     }
 
     // a boolean to determine whether API has more results or not
-    var canFetchMoreResults = true
+    private var canFetchMoreResults = true
 
-    struct Constants {
+    private struct Constants {
         static let FetchThreshold = 5 // a constant to determine when to fetch the results; anytime   difference between current displayed cell and your total results fall below this number you want to fetch the results and reload the table
         static let FetchLimit = 50 // results to fetch in single call
     }
@@ -39,57 +39,54 @@ class InfiniteScrollViewController: UIViewController, UITableViewDelegate, UITab
         citiesTableView.dataSource = self
 
         // Do any additional setup after loading the view.
-        fetchDataFromIndex(index: 0)
+        fetchData(from: 0)
+    }
+    
+    // MARK: - Internal methods
+
+    // method to fetch more data in background thread (see Data.switch for more details)
+    private func fetchData(from index: Int) {
+        NSLog("Fetching data from index: \(index)")
+        CaCities.getCities(from: index, andCount: Constants.FetchLimit) { cities in
+            self.displayCities += cities
+            self.canFetchMoreResults = !(cities.count < Constants.FetchLimit)
+        }
     }
 
-    // MARK: - Table view delegate/datasource methods
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return displayCities?.count ?? 0
-    }
 
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = citiesTableView.dequeueReusableCell(withIdentifier: TableViewCells.BasicTableCell.rawValue, for: indexPath)
-        cell.textLabel?.text = displayCities?[indexPath.row]
-        return cell
-    }
+    /*
+        // MARK: - Navigation
 
+        // In a storyboard-based application, you will often want to do a little preparation before navigation
+        override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+            // Get the new view controller using segue.destinationViewController.
+            // Pass the selected object to the new view controller.
+        }
+        */
+}
+
+extension InfiniteScrollViewController: UITableViewDelegate {
     // This is the method that makes it all happen. With this method you can determine if a cell is going to show up in view.
     // You can use this to your advantage by firing off a request when use is almost about to reach to the end of table
     // for example, if you are loading 50 results at a time, then fire off a request IN BACKGROUND (not blocking the main thread)
     // to fetch more results and once the background call returns update your main array and relaod the table.
     // That's it. This is all you need to make infinite scroll work.
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if (displayCities!.count - indexPath.row) == Constants.FetchThreshold && canFetchMoreResults {
-            fetchDataFromIndex(index: displayCities!.count)
+        if (displayCities.count - indexPath.row) == Constants.FetchThreshold && canFetchMoreResults {
+            fetchData(from: displayCities.count)
         }
     }
+}
 
-    // MARK: - Internal methods
-
-    // method to fetch more data in background thread (see Data.switch for more details)
-    private func fetchDataFromIndex(index: Int) {
-        NSLog("Fetching data from index: \(index)")
-        CaCities.getCitiesFromIndex(index: index, andCount: Constants.FetchLimit) { (data: [String]?) -> () in
-            if let data = data {
-                if index == 0 {
-                    self.displayCities = data
-                } else {
-                    self.displayCities?.append(contentsOf: data)
-                }
-                self.canFetchMoreResults = !(data.count < Constants.FetchLimit)
-            }
-        }
+extension InfiniteScrollViewController: UITableViewDataSource {
+    // MARK: - Table view delegate/datasource methods
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        displayCities.count
     }
-    
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = citiesTableView.dequeueReusableCell(withIdentifier: TableViewCells.BasicTableCell.rawValue, for: indexPath)
+        cell.textLabel?.text = displayCities[indexPath.row]
+        return cell
     }
-    */
-
 }
