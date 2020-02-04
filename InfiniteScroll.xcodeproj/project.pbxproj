@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		08B986B823E91CB500EFE615 /* LoadingCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 08B986B723E91CB500EFE615 /* LoadingCellView.xib */; };
 		AC2D68B81BC4C14800D384E6 /* InfiniteScrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2D68B71BC4C14800D384E6 /* InfiniteScrollViewController.swift */; };
 		AC2D68BA1BC4C1A700D384E6 /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2D68B91BC4C1A700D384E6 /* AppConstants.swift */; };
 		ACA2CED31BC45ABF00DFE608 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA2CED21BC45ABF00DFE608 /* AppDelegate.swift */; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		08B986B723E91CB500EFE615 /* LoadingCellView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoadingCellView.xib; sourceTree = "<group>"; };
 		AC2D68B71BC4C14800D384E6 /* InfiniteScrollViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfiniteScrollViewController.swift; sourceTree = "<group>"; };
 		AC2D68B91BC4C1A700D384E6 /* AppConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
 		ACA2CECF1BC45ABE00DFE608 /* InfiniteScroll.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InfiniteScroll.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -41,6 +43,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		08B986B923E9220E00EFE615 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				ACA2CED61BC45ABF00DFE608 /* Main.storyboard */,
+				08B986B723E91CB500EFE615 /* LoadingCellView.xib */,
+				ACA2CEDB1BC45ABF00DFE608 /* LaunchScreen.storyboard */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		ACA2CEC61BC45ABE00DFE608 = {
 			isa = PBXGroup;
 			children = (
@@ -61,12 +73,11 @@
 		ACA2CED11BC45ABF00DFE608 /* InfiniteScroll */ = {
 			isa = PBXGroup;
 			children = (
+				08B986B923E9220E00EFE615 /* Views */,
 				ACA2CED21BC45ABF00DFE608 /* AppDelegate.swift */,
 				AC2D68B71BC4C14800D384E6 /* InfiniteScrollViewController.swift */,
-				ACA2CED61BC45ABF00DFE608 /* Main.storyboard */,
 				ACA2CEE41BC45ACE00DFE608 /* Data.swift */,
 				ACA2CED91BC45ABF00DFE608 /* Assets.xcassets */,
-				ACA2CEDB1BC45ABF00DFE608 /* LaunchScreen.storyboard */,
 				ACA2CEDE1BC45ABF00DFE608 /* Info.plist */,
 				AC2D68B91BC4C1A700D384E6 /* AppConstants.swift */,
 			);
@@ -132,6 +143,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				ACA2CEDD1BC45ABF00DFE608 /* LaunchScreen.storyboard in Resources */,
+				08B986B823E91CB500EFE615 /* LoadingCellView.xib in Resources */,
 				ACA2CEDA1BC45ABF00DFE608 /* Assets.xcassets in Resources */,
 				ACA2CED81BC45ABF00DFE608 /* Main.storyboard in Resources */,
 				ACB6CA931BF7EB910054008E /* Demo.gif in Resources */,

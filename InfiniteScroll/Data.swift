@@ -16,7 +16,7 @@ struct CaCities {
 
             let nextCities = Array(CaCities.AllCities[start..<end])
 
-            DispatchQueue.main.async {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                 completion(nextCities)
             }
         }
