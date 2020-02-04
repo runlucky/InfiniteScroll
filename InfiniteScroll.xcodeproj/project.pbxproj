@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		08B986B823E91CB500EFE615 /* LoadingCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 08B986B723E91CB500EFE615 /* LoadingCellView.xib */; };
+		08B986BD23E92BC800EFE615 /* Realm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B986BC23E92BC800EFE615 /* Realm.swift */; };
+		08B986BF23E92EF700EFE615 /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B986BE23E92EF700EFE615 /* City.swift */; };
 		AC2D68B81BC4C14800D384E6 /* InfiniteScrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2D68B71BC4C14800D384E6 /* InfiniteScrollViewController.swift */; };
 		AC2D68BA1BC4C1A700D384E6 /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2D68B91BC4C1A700D384E6 /* AppConstants.swift */; };
 		ACA2CED31BC45ABF00DFE608 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA2CED21BC45ABF00DFE608 /* AppDelegate.swift */; };
@@ -20,6 +22,8 @@
 
 /* Begin PBXFileReference section */
 		08B986B723E91CB500EFE615 /* LoadingCellView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoadingCellView.xib; sourceTree = "<group>"; };
+		08B986BC23E92BC800EFE615 /* Realm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Realm.swift; sourceTree = "<group>"; };
+		08B986BE23E92EF700EFE615 /* City.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
 		AC2D68B71BC4C14800D384E6 /* InfiniteScrollViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfiniteScrollViewController.swift; sourceTree = "<group>"; };
 		AC2D68B91BC4C1A700D384E6 /* AppConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
 		ACA2CECF1BC45ABE00DFE608 /* InfiniteScroll.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InfiniteScroll.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -80,6 +84,8 @@
 				ACA2CED91BC45ABF00DFE608 /* Assets.xcassets */,
 				ACA2CEDE1BC45ABF00DFE608 /* Info.plist */,
 				AC2D68B91BC4C1A700D384E6 /* AppConstants.swift */,
+				08B986BC23E92BC800EFE615 /* Realm.swift */,
+				08B986BE23E92EF700EFE615 /* City.swift */,
 			);
 			path = InfiniteScroll;
 			sourceTree = "<group>";
@@ -157,7 +163,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				08B986BD23E92BC800EFE615 /* Realm.swift in Sources */,
 				AC2D68B81BC4C14800D384E6 /* InfiniteScrollViewController.swift in Sources */,
+				08B986BF23E92EF700EFE615 /* City.swift in Sources */,
 				ACA2CEE51BC45ACE00DFE608 /* Data.swift in Sources */,
 				ACA2CED31BC45ABF00DFE608 /* AppDelegate.swift in Sources */,
 				AC2D68BA1BC4C1A700D384E6 /* AppConstants.swift in Sources */,

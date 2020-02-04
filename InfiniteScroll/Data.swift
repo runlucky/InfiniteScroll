@@ -9,42 +9,32 @@
 import Foundation
 
 struct CaCities {
-    static func getCities(from index: Int, andCount count: Int, withCompletion completion: @escaping ([String]) -> ())  {
-        DispatchQueue.global(qos: .background).async {
-            let start = index.limit(0...AllCities.endIndex)
-            let end = (index + count).limit(0...AllCities.endIndex)
+    static func getServerCities(_ range: ClosedRange<Date>, withCompletion completion: @escaping ([City]) -> ()) {
+        DispatchQueue.global(qos: .userInitiated).async {
+            let cities = CaCities.serverCities.filter { city in
+                range.contains(city.timestamp)
+            }
+            print("応答... \(cities.min()?.timestamp.toString(.time) ?? "nil")...\(cities.max()?.timestamp.toString(.time) ?? "nil")")
 
-            let nextCities = Array(CaCities.AllCities[start..<end])
-
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                completion(nextCities)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                completion(cities)
             }
         }
     }
 
-    private static let AllCities = (0...441).map {_ in source.randomElement()! }
-    private static let source = [
-        "Anchorage, AK",
-        "Atlanta, GA",
-        "Birmingham, AL",
-        "Columbus-Tupelo-West Point, MS",
-        "Columbus, GA",
-        "Dothan, AL",
-        "Fairbanks, AK",
-        "Ft. Smith-Fayetteville-Springdale-Rogers, AR",
-        "Huntsville-Decatur (Florence), AL",
-        "Jonesboro, AR",
-        "Juneau, AK",
-        "Little Rock-Pine Bluff, AR",
-        "Memphis, TN",
-        "Meridian, MS",
-        "Mobile, AL-Pensacola (Ft. Walton Beach), FL",
-        "Monroe, LA-El Dorado, AR",
-        "Montgomery (Selma), AL",
-        "Shreveport, LA",
-        "Springfield, MO"
-    ]
+    private static let serverCities: [City] = {
+        (0...30).map { City(timestamp: Date(timeIntervalSince1970: Double(1580719378 - $0)), from: "Server") }
+    }()
+
+
 }
+
+extension Collection where Element: Comparable {
+    public func sortedDescending() -> Array<Element> {
+        return sorted { $0 > $1 }
+    }
+}
+
 
 extension Comparable {
     func limit(_ range: ClosedRange<Self>) -> Self {
