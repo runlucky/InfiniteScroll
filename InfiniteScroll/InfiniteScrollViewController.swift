@@ -10,7 +10,6 @@ import UIKit
 
 class InfiniteScrollViewController: UIViewController {
     @IBOutlet private weak var citiesTableView: UITableView!
-    private var canFetchMoreResults = true
     private var isWorking = false
     private var db = Realm()
 
